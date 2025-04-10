@@ -30,27 +30,27 @@
             </colgroup>
             <tr>
               <td>번호</td>
-              <td th:text="${board.bno}"></td>
+              <td th:text="${map.board.bno}"></td>
             </tr>
             <tr>
               <td>작성일</td>
-              <td th:text="${board.writeTime}"></td>
+              <td th:text="${map.board.writeTime}"></td>
             </tr>
             <tr>
               <td>제목</td>
               <td>
-                <input type="text" style="display:block;" class="form-control" id="title" maxlength="30" name="title" th:value="${board.title}">
+                <input type="text" style="display:block;" class="form-control" id="title" maxlength="30" name="title" th:value="${map.board.title}">
               </td>
             </tr>
           </table>
         </div>
         <div class="mb-3 mt-3">
           <label class="form-label" for="summernote">내용:</label>
-          <textarea id="summernote" name="content" th:utext="${board.content}"></textarea>
+          <textarea id="summernote" name="content" th:utext="${map.board.content}"></textarea>
         </div>
         <div class="mb-3 mt-3">
           <input type="password" class="form-control" maxlength="10" name="password" placeholder="변경을 위한 비밀번호" required>
-          <input type="hidden" name="bno" th:value="${board.bno}">
+          <input type="hidden" name="bno" th:value="${map.board.bno}">
         </div>
         <div class="mb-3 mt-3">
           <button class="btn btn-outline-primary">변경하기</button>
@@ -61,11 +61,18 @@
         <label>
           <input type="password" class="form-control" maxlength="10" name="password" placeholder="삭제를 위한 비밀번호" required>
         </label>
-        <input type="hidden" name="bno" th:value="${board.bno}">
+        <input type="hidden" name="bno" th:value="${map.board.bno}">
         <div class="mb-3 mt-3">
           <button class="btn btn-outline-danger">삭제하기</button>
         </div>
       </form>
+      <hr>
+        <table>
+          <tr th:each="c:${comments}">
+            <td th:text="${c.content}"></td>
+            <td th:text="${c.nickname}"></td>
+          </tr>
+        </table>
     </section>
     <aside th:replace="~{./fragment/aside.html}"></aside>
   </main>
